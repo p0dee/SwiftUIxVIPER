@@ -7,9 +7,42 @@
 
 import SwiftUI
 
+/*
+ TODO:
+ 
+ Web URL
+ Error
+ Persistence
+ */
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!").padding()
+        TabView {
+            RepositoryListView(
+                presenter: .init(
+                    interactor: RepositoryListInteractor(
+                        searchResultModel: SearchResultModel(),
+                        bookmarkListModel: BookmarkListModel.shared
+                    )
+                )
+            )
+            .tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Search")
+            }
+            
+            BookmarkListView(
+                presenter: .init(
+                    interactor: BookmarkListInteractor(
+                        bookmarkListModel: BookmarkListModel.shared
+                    )
+                )
+            )
+            .tabItem {
+                Image(systemName: "bookmark.fill")
+                Text("Bookmarks")
+            }
+        }
     }
 }
 
