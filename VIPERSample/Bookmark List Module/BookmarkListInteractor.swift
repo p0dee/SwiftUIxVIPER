@@ -18,4 +18,16 @@ class BookmarkListInteractor {
         self.bookmarkListModel = bookmarkListModel
     }
     
+    func addBookmark(_ repo: Repository) {
+        bookmarkListModel.add(repo)
+    }
+    
+    func removeBookmark(_ repo: Repository) {
+        bookmarkListModel.remove(repo)
+    }
+    
+    func bookmarksContains(_ repo: Repository) -> Bool {
+        bookmarkListModel.contains(repo)
+    }
+    
 }

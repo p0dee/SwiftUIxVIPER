@@ -17,16 +17,21 @@ class RepositoryListPresenter: ObservableObject {
     
     @Published var searchResult: [Repository] = []
     @Published var bookmarks: [Repository] = []
+    @Published var requestState: RequestState = .succeed
     
     init(interactor: RepositoryListInteractor) {
         self.interactor = interactor
-        self.router = RepositoryListRouter()        
+        self.router = RepositoryListRouter()
+        
         interactor.searchResultModel.$repos            
             .assign(to: \.searchResult, on: self)
             .store(in: &cancellables)
-
+        interactor.$requestState
+            .assign(to: \.requestState, on: self)
+            .store(in: &cancellables)
     }
     
+    //
     func linkBuilder<Content: View>(for repo: Repository, @ViewBuilder content: () -> Content
     ) -> some View {
         NavigationLink(destination: router.detailView(for: repo, bookmarks: interactor.bookmarkListModel)) {

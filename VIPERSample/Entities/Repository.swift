@@ -17,6 +17,7 @@ struct Repository: Codable {
     let name: String
     let description: String?
     let owner: Owner
+    let html_url: String
     
 }
 

@@ -15,7 +15,7 @@ struct RepositoryDetailView: View {
     @ObservedObject var presenter: RepositoryDetailPresenter
     
     var body: some View {
-        WebView(initialURL: URL(string: "https://apple.com")!)
+        WebView(initialURL: URL(string: repository.html_url)!)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(repository.name)
             .navigationBarItems(trailing: Button {
@@ -24,9 +24,12 @@ struct RepositoryDetailView: View {
                 } else {
                     presenter.addBookmark(repository)
                 }
+                //didTapButton()
             } label: {
                 Image(systemName: presenter.shouldHighlightBookmarkButton() ? "bookmark.fill" :  "bookmark")
+                //presenter.requestImage() + SiwftUI_@State
             })
+        //if文は描かない方がいい、タップされたらpresenter
     }
     
 }

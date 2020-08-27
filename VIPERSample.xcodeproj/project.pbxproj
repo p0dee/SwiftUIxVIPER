@@ -27,6 +27,11 @@
 		0271DB8124D576DD009CDA8E /* RepositoryDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0271DB8024D576DD009CDA8E /* RepositoryDetailInteractor.swift */; };
 		0271DB8324D576E8009CDA8E /* RepositoryDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0271DB8224D576E8009CDA8E /* RepositoryDetailRouter.swift */; };
 		0271DB8624D576F6009CDA8E /* RepositoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0271DB8524D576F6009CDA8E /* RepositoryDetailView.swift */; };
+		02D3BCC024E561C800397D79 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3BCBF24E561C800397D79 /* API.swift */; };
+		02D3BCC224E5620A00397D79 /* RepositorySearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3BCC124E5620A00397D79 /* RepositorySearchAPI.swift */; };
+		02D3BCC524E56E5900397D79 /* RepositorySearchingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3BCC424E56E5900397D79 /* RepositorySearchingInteractor.swift */; };
+		02D3BCC724E56E6800397D79 /* BookmarkAddingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3BCC624E56E6800397D79 /* BookmarkAddingInteractor.swift */; };
+		02D3BCC924E56E7600397D79 /* BookmarkRemovingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D3BCC824E56E7600397D79 /* BookmarkRemovingInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,11 @@
 		0271DB8024D576DD009CDA8E /* RepositoryDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInteractor.swift; sourceTree = "<group>"; };
 		0271DB8224D576E8009CDA8E /* RepositoryDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailRouter.swift; sourceTree = "<group>"; };
 		0271DB8524D576F6009CDA8E /* RepositoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailView.swift; sourceTree = "<group>"; };
+		02D3BCBF24E561C800397D79 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		02D3BCC124E5620A00397D79 /* RepositorySearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchAPI.swift; sourceTree = "<group>"; };
+		02D3BCC424E56E5900397D79 /* RepositorySearchingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchingInteractor.swift; sourceTree = "<group>"; };
+		02D3BCC624E56E6800397D79 /* BookmarkAddingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkAddingInteractor.swift; sourceTree = "<group>"; };
+		02D3BCC824E56E7600397D79 /* BookmarkRemovingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRemovingInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +135,9 @@
 			children = (
 				02353E7124CC478D006A71EC /* VIPERSampleApp.swift */,
 				02353E7324CC478D006A71EC /* ContentView.swift */,
+				02D3BCBE24E561BB00397D79 /* API */,
 				02353E9E24CC481D006A71EC /* Entities */,
+				02D3BCC324E56CD400397D79 /* Interactors */,
 				02353E9C24CC47A8006A71EC /* Repository List Module */,
 				0271DB7524D575EE009CDA8E /* Bookmark List Module */,
 				02353E9D24CC47B3006A71EC /* Repository Detail Module */,
@@ -202,6 +214,25 @@
 				0271DB7C24D576C4009CDA8E /* BookmarkListView.swift */,
 			);
 			path = "Bookmark List Module";
+			sourceTree = "<group>";
+		};
+		02D3BCBE24E561BB00397D79 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				02D3BCBF24E561C800397D79 /* API.swift */,
+				02D3BCC124E5620A00397D79 /* RepositorySearchAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		02D3BCC324E56CD400397D79 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				02D3BCC424E56E5900397D79 /* RepositorySearchingInteractor.swift */,
+				02D3BCC624E56E6800397D79 /* BookmarkAddingInteractor.swift */,
+				02D3BCC824E56E7600397D79 /* BookmarkRemovingInteractor.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,14 +364,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D3BCC724E56E6800397D79 /* BookmarkAddingInteractor.swift in Sources */,
 				02353EA024CC4833006A71EC /* Repository.swift in Sources */,
 				02353EA224CC4A06006A71EC /* SearchResultModel.swift in Sources */,
 				0271DB7F24D576D0009CDA8E /* RepositoryDetailPresenter.swift in Sources */,
 				0271DB8624D576F6009CDA8E /* RepositoryDetailView.swift in Sources */,
+				02D3BCC524E56E5900397D79 /* RepositorySearchingInteractor.swift in Sources */,
+				02D3BCC224E5620A00397D79 /* RepositorySearchAPI.swift in Sources */,
 				02353EA424CC4C8C006A71EC /* RepositoryListPresenter.swift in Sources */,
 				02353EA624CC4CA4006A71EC /* RepositoryListRouter.swift in Sources */,
 				0271DB7724D576A5009CDA8E /* BookmarkListPresenter.swift in Sources */,
 				02353E7424CC478D006A71EC /* ContentView.swift in Sources */,
+				02D3BCC924E56E7600397D79 /* BookmarkRemovingInteractor.swift in Sources */,
 				0271DB7D24D576C4009CDA8E /* BookmarkListView.swift in Sources */,
 				0271DB8124D576DD009CDA8E /* RepositoryDetailInteractor.swift in Sources */,
 				0271DB7924D576B2009CDA8E /* BookmarkListInteractor.swift in Sources */,
@@ -348,6 +383,7 @@
 				02353EA824CC4DA6006A71EC /* RepositoryListInteractor.swift in Sources */,
 				0271DB7B24D576BB009CDA8E /* BookmarkListRouter.swift in Sources */,
 				02353E7224CC478D006A71EC /* VIPERSampleApp.swift in Sources */,
+				02D3BCC024E561C800397D79 /* API.swift in Sources */,
 				02353EAA24CC4DF1006A71EC /* RepositoryListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

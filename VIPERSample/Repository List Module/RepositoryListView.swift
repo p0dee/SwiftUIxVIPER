@@ -17,12 +17,19 @@ struct RepositoryListView: View {
                 SearchFiled(presenter: presenter)
                     .padding()
                 List {
-                    ForEach (presenter.searchResult, id: \.id) { item in
-                        presenter.linkBuilder(for: item) {
-                            Cell(repositoryName: item.name,
-                                 description: item.description,
-                                 isBookmarked: true)
+                    switch presenter.requestState {
+                    case .succeed:
+                        ForEach (presenter.searchResult, id: \.id) { item in
+                            presenter.linkBuilder(for: item) {
+                                Cell(repositoryName: item.name,
+                                     description: item.description,
+                                     isBookmarked: true)
+                            }
                         }
+                    case .loading:
+                        Text("Loading...").layoutPriority(-1)
+                    case .failure(let err):
+                        Text(err.message)
                     }
                 }
             }

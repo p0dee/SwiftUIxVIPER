@@ -10,8 +10,8 @@ import SwiftUI
 /*
  TODO:
  
+ 
  Web URL
- Error
  Persistence
  */
 

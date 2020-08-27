@@ -1,32 +1,23 @@
 //
-//  RepositoryListInteractors.swift
+//  RepositorySearchInteractor.swift
 //  VIPERSample
 //
-//  Created by Takeshi Tanaka on 2020/07/25.
+//  Created by Takeshi Tanaka on 2020/08/13.
 //
 
 import Combine
 import Foundation
 
-class RepositoryListInteractor {
+class RepositorySearchingInteractor {
     
     let searchResultModel: SearchResultModel
     
-    let bookmarkListModel: BookmarkListModel
-    
     var subscriptions = Set<AnyCancellable>()
-    
-    //    private var cancellable: Cancellable? {
-    //        didSet {
-    //            oldValue?.cancel()
-    //        }
-    //    }
     
     @Published var requestState: RequestState = .succeed
     
     init(searchResultModel: SearchResultModel, bookmarkListModel: BookmarkListModel) {
         self.searchResultModel = searchResultModel
-        self.bookmarkListModel = bookmarkListModel
     }
     
     func searchRepository(ownerName: String) {
@@ -46,6 +37,6 @@ class RepositoryListInteractor {
                 self.searchResultModel.repos = repos
             }))
             .store(in: &subscriptions)
-    }        
+    }
     
 }

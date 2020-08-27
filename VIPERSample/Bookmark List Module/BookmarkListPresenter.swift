@@ -17,7 +17,7 @@ class BookmarkListPresenter: ObservableObject {
     
     @Published var bookmarks: [Repository] = []
     
-    init(interactor: BookmarkListInteractor) {
+    init(interactor: BookmarkListInteractor) { //add, remove 両方のinteractorをイニシャライザに指定させる？増えたらやばくない？
         self.interactor = interactor
         self.router = BookmarkListRouter()
         
@@ -37,7 +37,9 @@ class BookmarkListPresenter: ObservableObject {
         let repos = indices
             .filter { $0 < bookmarks.count }
             .map { bookmarks[$0] }
-        repos.forEach { interactor.bookmarkListModel.remove($0) }
+        repos.forEach {
+            interactor.removeBookmark($0)            
+        }
     }
     
 }
