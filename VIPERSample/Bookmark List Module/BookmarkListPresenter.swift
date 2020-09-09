@@ -17,7 +17,7 @@ class BookmarkListPresenter: ObservableObject {
     
     @Published var bookmarks: [Repository] = []
     
-    init(interactor: BookmarkListInteractor) { //add, remove 両方のinteractorをイニシャライザに指定させる？増えたらやばくない？
+    init(interactor: BookmarkListInteractor) {
         self.interactor = interactor
         self.router = BookmarkListRouter()
         
