@@ -14,23 +14,20 @@ struct RepositoryListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchFiled(presenter: presenter)
+                SearchFiled(placeholder: "Search repos with user name") { fieldValue in
+                    presenter.search(ownerName: fieldValue)
+                }
                     .padding()
                 List {
-                    switch presenter.requestState {
-                    case .succeed:
-                        ForEach (presenter.searchResult, id: \.id) { item in
-                            presenter.linkBuilder(for: item) {
-                                Cell(repositoryName: item.name,
-                                     description: item.description,
-                                     isBookmarked: true)
-                            }
-                        }
-                    case .loading:
-                        Text("Loading...").layoutPriority(-1)
-                    case .failure(let err):
-                        Text(err.message)
-                    }
+                    presenter.contentView(loading: {
+                        Text("Loading...")
+                    }, contentCell: { item in
+                        Cell(repositoryName: item.name,
+                             description: item.description,
+                             isBookmarked: true)
+                    }, failure: { error in
+                        Text(error.message)
+                    })
                 }
             }
             .navigationBarHidden(true)
@@ -39,9 +36,9 @@ struct RepositoryListView: View {
     
 }
 
-extension RepositoryListView {
+private extension RepositoryListView {
     
-    struct Cell: View {
+    struct Cell: View {        
         
         let repositoryName: String
         let description: String?
@@ -49,7 +46,6 @@ extension RepositoryListView {
         
         var body: some View {
             HStack(alignment: .firstTextBaseline, spacing: 3) {
-                Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
                 VStack(alignment: .leading, spacing: 3) {
                     Text(repositoryName)
                         .font(.body)
@@ -69,16 +65,18 @@ extension RepositoryListView {
 
     struct SearchFiled: View {
         
+        let placeholder: String
+        let searchButtonAction: (_ fieldValie: String) -> Void
+        
         @State var fieldValue: String = ""
-        var presenter: RepositoryListPresenter
         
         var body: some View {
             HStack {
-                TextField("Search repos with user name", text: $fieldValue)
+                TextField(placeholder, text: $fieldValue)
                     .autocapitalization(.none)
                     .keyboardType(.alphabet)
                 Button("Search") {
-                    presenter.search(ownerName: fieldValue)
+                    searchButtonAction(fieldValue)
                 }
             }
             .padding()

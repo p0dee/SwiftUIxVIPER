@@ -31,8 +31,24 @@ class RepositoryListPresenter: ObservableObject {
             .store(in: &cancellables)
     }
     
-    //
-    func linkBuilder<Content: View>(for repo: Repository, @ViewBuilder content: () -> Content
+    func contentView<LoadingView: View, ContentCellView: View, FailureView: View>(loading: () -> LoadingView, contentCell: @escaping (_ item: Repository) -> ContentCellView, failure: (_ error: APIError) -> FailureView) -> some View {
+        Group {
+            switch requestState {
+            case .succeed:
+                ForEach (searchResult, id: \.id) { item in
+                    self.navigationLinkForRepositoryDetailView(for: item) {
+                        contentCell(item)
+                    }
+                }
+            case .loading:
+                loading()
+            case .failure(let err):
+                failure(err)
+            }
+        }
+    }
+    
+    func navigationLinkForRepositoryDetailView<Content: View>(for repo: Repository, @ViewBuilder content: () -> Content
     ) -> some View {
         NavigationLink(destination: router.detailView(for: repo, bookmarks: interactor.bookmarkListModel)) {
             content()
